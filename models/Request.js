@@ -13,7 +13,7 @@ const requestSchema = new mongoose.Schema({
   subject: {
     type: String,
     required: [true, 'Please specify the subject of your request'],
-    enum: ['Course-related', 'Faculty-request', 'Administrative','Clubs-related', 'other']
+    enum: ['course-related', 'faculty-request', 'administrative', 'other']
   },
   description: {
     type: String,
