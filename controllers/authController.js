@@ -2,7 +2,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { storeTempRegistration, verifyOTP } = require('../utils/tempStorage');
-const sendEmail = require('../utils/sendEmail');
+const sendotpmail = require('../utils/sendotpmail');
 
 // Error Handler
 const errorHandler = (err, res) => {
@@ -21,7 +21,6 @@ const generateToken = (id) => {
   });
 };
 
-// Register user - Step 1: Send OTP
 exports.register = async (req, res) => {
   console.log('Registration request received:', req.body);
   try {
@@ -86,7 +85,7 @@ exports.register = async (req, res) => {
     </div>
     `;
 
-    await sendEmail({
+    await sendotpmail({
       email: normalizedEmail,
       subject: 'Email Verification - Request Portal',
       html: verificationEmailHtml
