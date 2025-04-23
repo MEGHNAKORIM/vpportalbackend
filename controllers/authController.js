@@ -2,7 +2,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { storeTempRegistration, verifyOTP } = require('../utils/tempStorage');
-const sendEmail = require('../utils/sendEmail');
+const sendotpmail = require('../utils/sendEmail');
 
 // Error Handler
 const errorHandler = (err, res) => {
@@ -86,7 +86,7 @@ exports.register = async (req, res) => {
     </div>
     `;
 
-    await sendEmail({
+    await sendotpmail({
       email: normalizedEmail,
       subject: 'Email Verification - Request Portal',
       html: verificationEmailHtml
@@ -233,7 +233,7 @@ exports.resendOTP = async (req, res) => {
     </div>
     `;
 
-    await sendEmail({
+    await sendotpmail({
       email: user.email,
       subject: 'New OTP - Email Verification',
       html: verificationEmailHtml
@@ -343,7 +343,7 @@ exports.forgotPassword = async (req, res) => {
     const message = `You are receiving this email because you (or someone else) has requested to reset your password. Click the link below to reset your password:\n\n${resetUrl}\n\nThis link will expire in 10 minutes.`;
 
     try {
-      await sendEmail({
+      await sendotpmail({
         email: user.email,
         subject: 'Password Reset Request',
         message
