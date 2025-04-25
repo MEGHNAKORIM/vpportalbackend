@@ -15,16 +15,13 @@ const createAdmin = async () => {
 
     // Create admin user
     const admin = await User.create({
-      name: 'Meghna',
-      email: 'meghnakorimi@gmail.com',
-      password: 'Meghana@123',
+      name: 'Vice Precident',
+      email: 'vp-approval@woxsen.edu.in',
+      password: 'VPapproval@123',
       role: 'admin',
-      phone: '1234567890'
+      phone: '1234567890',
     });
 
-    console.log('Admin user created successfully:');
-    console.log('Email:', admin.email);
-    console.log('Password: Meghana@123');
     
     process.exit(0);
   } catch (error) {

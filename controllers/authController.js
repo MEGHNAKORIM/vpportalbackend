@@ -2,7 +2,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { storeTempRegistration, verifyOTP } = require('../utils/tempStorage');
-const sendotpmail = require('../utils/sendEmail');
+const sendotpmail = require('../utils/sendotpmail');
 
 // Error Handler
 const errorHandler = (err, res) => {

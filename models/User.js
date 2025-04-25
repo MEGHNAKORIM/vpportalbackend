@@ -23,20 +23,23 @@ const userSchema = new mongoose.Schema({
     enum: ['student', 'faculty', 'admin'],
     default: 'student'
   },
-
   school: {
     type: String,
-    required: [true, 'Please enter your school'],
-    enum: [
-      'School of Technology',
-      'School of Sciences',
-      'School of Architecture and Planning',
-      'School of Business',
-      'School of Arts and Design',
-      'School of Liberal Arts and Humanities',
-      'School of Law'
-    ]
-  },
+    enum: {
+      values: ["School of Business",
+  "School of Sciences",
+  "School of Technology",
+  "School of Arts and Design",
+  "School of Architecture",
+  "School of Law",
+  "School of Liberal Arts and Sciences"],
+      message: '{VALUE} is not a valid school',
+    },
+    required: function () {
+      return this.role !== 'admin'; // only required if not admin
+    },
+  }
+  ,
   phone: {
     type: String,
     required: [true, 'Please enter your phone number']
